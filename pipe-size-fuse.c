@@ -77,11 +77,11 @@ int main(int argc, char **argv)
       int i;
       for (i = 0; i < bytes; ++i) {
         line_size ++;
+        if ('\r' == buffer[i] || '\n' == buffer[i]) line_size = 0;
         if (line_size > line_fuse_size) {
           fprintf( stderr, "Error. The line size  %llu exceeded the limit %llu bytes\n", line_size, line_fuse_size);
           return 1;
         }
-        if ('\r' == buffer[i] || '\n' == buffer[i]) line_size = 0;
       }
     }
 
